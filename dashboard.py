@@ -102,7 +102,7 @@ def create_founder_value_plot(simulationData):
               linestyle='--', label="median")
     ax.set_title("Histogram of Founder Share Value (INCLUDING failure cases)", fontsize=16)
     ax.legend(fontsize=14, frameon=True)
-    ax.grid(color="lightgray", linewidth=0.5)
+    # ax.grid(color="lightgray", linewidth=0.5)
     return fig
 
 # Интерфейс Streamlit
@@ -224,7 +224,7 @@ if 'simulationData' in st.session_state:
     ax.axvline(simulationData['founderShareValue'].median(), color='limegreen', linestyle='--', label="median")
     ax.set_title("Histogram of Founder Share Value (INCLUDING failure cases)", fontsize=16)
     ax.legend(fontsize=14, frameon=True)
-    ax.grid(color="lightgray", linewidth=0.5)
+    # ax.grid(color="lightgray", linewidth=0.5)
     st.pyplot(fig3)
     
     # Данные в виде таблицы
