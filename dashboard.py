@@ -5,6 +5,18 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
 
+plt.style.use("seaborn-v0_8-dark")
+plt.rcParams['figure.figsize'] = (20, 5)
+plt.rcParams['grid.color'] = "#575757"
+plt.rcParams['grid.linewidth'] = 0.5
+plt.rcParams.update({"axes.grid" : True})
+
+for param in ['text.color', 'axes.labelcolor', 'xtick.color', 'ytick.color']:
+    plt.rcParams[param] = "#ffffff"
+
+for param in ['figure.facecolor', 'axes.facecolor', 'savefig.facecolor']:
+    plt.rcParams[param] = "#282434"
+
 # Настройка страницы
 st.set_page_config(page_title="SPAC Monte Carlo Dashboard", layout="wide")
 
