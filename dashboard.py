@@ -218,11 +218,12 @@ if 'simulationData' in st.session_state:
     # Ограниченный диапазон (как в вашем коде)
     st.header("💰 Founder Share Value Distribution (Zoomed)")
     fig3, ax = plt.subplots(figsize=(20, 7))
+    withoutFailures = simulationData['founderShareValue'][simulationData['founderShareValue'] != 0.0]
     sns.histplot(simulationData['founderShareValue'], bins='auto', color="#007E76", edgecolor = "white",
-                alpha=0.75, zorder=2, binrange=[6.0, 11.5], linewidth=0.5, stat='probability', ax=ax)
+                alpha=0.75, zorder=2, binrange=[withoutFailures.min(), withoutFailures.max()], linewidth=0.5, stat='probability', ax=ax)
     ax.axvline(simulationData['founderShareValue'].mean(), color='red', linestyle='--', label="mean")
     ax.axvline(simulationData['founderShareValue'].median(), color='limegreen', linestyle='--', label="median")
-    ax.set_title("Histogram of Founder Share Value (INCLUDING failure cases)", fontsize=16)
+    ax.set_title("Histogram of Founder Share Value (EXCLUDING failure cases)", fontsize=16)
     ax.legend(fontsize=14, frameon=True)
     # ax.grid(color="lightgray", linewidth=0.5)
     st.pyplot(fig3)
