@@ -15,7 +15,7 @@ for param in ['text.color', 'axes.labelcolor', 'xtick.color', 'ytick.color']:
     plt.rcParams[param] = "#ffffff"
 
 for param in ['figure.facecolor', 'axes.facecolor', 'savefig.facecolor']:
-    plt.rcParams[param] = "#282434"
+    plt.rcParams[param] = "#262731"
 
 # Настройка страницы
 st.set_page_config(page_title="SPAC Monte Carlo Dashboard", layout="wide")
@@ -81,7 +81,7 @@ def create_distribution_plots(simulationData):
             color=color,
             edgecolor='black',
             linewidth=0.5,
-            alpha=0.5,
+            alpha=0.75,
             ax=ax,
             zorder=2,
             stat="probability"
@@ -95,10 +95,10 @@ def create_distribution_plots(simulationData):
 def create_founder_value_plot(simulationData):
     fig, ax = plt.subplots(figsize=(20, 7))
     sns.histplot(simulationData['founderShareValue'], bins='auto', color="#007E76", 
-                alpha=0.5, zorder=2, linewidth=0.5, stat='probability', ax=ax)
+                alpha=0.75, zorder=2, linewidth=0.5, stat='probability', ax=ax)
     ax.axvline(simulationData['founderShareValue'].mean(), color='red', 
               linestyle='--', label="mean")
-    ax.axvline(simulationData['founderShareValue'].median(), color='green', 
+    ax.axvline(simulationData['founderShareValue'].median(), color='limegreen', 
               linestyle='--', label="median")
     ax.set_title("Histogram of Founder Share Value (INCLUDING failure cases)", fontsize=16)
     ax.legend(fontsize=14, frameon=True)
@@ -219,9 +219,9 @@ if 'simulationData' in st.session_state:
     st.header("💰 Founder Share Value Distribution (Zoomed)")
     fig3, ax = plt.subplots(figsize=(20, 7))
     sns.histplot(simulationData['founderShareValue'], bins='auto', color="#007E76", 
-                alpha=0.5, zorder=2, binrange=[6.0, 11.5], linewidth=0.5, stat='probability', ax=ax)
+                alpha=0.75, zorder=2, binrange=[6.0, 11.5], linewidth=0.5, stat='probability', ax=ax)
     ax.axvline(simulationData['founderShareValue'].mean(), color='red', linestyle='--', label="mean")
-    ax.axvline(simulationData['founderShareValue'].median(), color='green', linestyle='--', label="median")
+    ax.axvline(simulationData['founderShareValue'].median(), color='limegreen', linestyle='--', label="median")
     ax.set_title("Histogram of Founder Share Value (INCLUDING failure cases)", fontsize=16)
     ax.legend(fontsize=14, frameon=True)
     ax.grid(color="lightgray", linewidth=0.5)
