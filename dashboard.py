@@ -94,13 +94,13 @@ def create_distribution_plots(simulationData):
 
 def create_founder_value_plot(simulationData):
     fig, ax = plt.subplots(figsize=(20, 7))
-    sns.histplot(simulationData['founderShareValue'], bins='auto', color="#007E76", edgecolor = "white",
+    sns.histplot(simulationData['founderShareValue'], bins=50, color="#007E76", edgecolor = "white",
                 alpha=0.75, zorder=2, linewidth=0.5, stat='probability', ax=ax)
     ax.axvline(simulationData['founderShareValue'].mean(), color='red', 
               linestyle='--', label="mean")
     ax.axvline(simulationData['founderShareValue'].median(), color='limegreen', 
               linestyle='--', label="median")
-    ax.set_title("Histogram of Founder Share Value (INCLUDING failure cases)", fontsize=16)
+    # ax.set_title("Histogram of Founder Share Value (INCLUDING failure cases)", fontsize=16)
     ax.legend(fontsize=14, frameon=True)
     # ax.grid(color="lightgray", linewidth=0.5)
     return fig
@@ -211,19 +211,19 @@ if 'simulationData' in st.session_state:
     st.pyplot(fig1)
     
     # График Founder Share Value
-    st.header("💰 Founder Share Value Distribution")
+    st.header("💰 Founder Share Value Distribution (INCLUDING failure cases)")
     fig2 = create_founder_value_plot(simulationData)
     st.pyplot(fig2)
     
     # Ограниченный диапазон (как в вашем коде)
-    st.header("💰 Founder Share Value Distribution (Zoomed)")
+    st.header("💰 Founder Share Value Distribution (EXCLUDING failure cases)")
     fig3, ax = plt.subplots(figsize=(20, 7))
     withoutFailures = simulationData['founderShareValue'][simulationData['founderShareValue'] != 0.0]
-    sns.histplot(simulationData['founderShareValue'], bins='auto', color="#007E76", edgecolor = "white",
+    sns.histplot(simulationData['founderShareValue'], bins=50, color="#007E76", edgecolor = "white",
                 alpha=0.75, zorder=2, binrange=[withoutFailures.min(), withoutFailures.max()], linewidth=0.5, stat='probability', ax=ax)
     ax.axvline(simulationData['founderShareValue'].mean(), color='red', linestyle='--', label="mean")
     ax.axvline(simulationData['founderShareValue'].median(), color='limegreen', linestyle='--', label="median")
-    ax.set_title("Histogram of Founder Share Value (EXCLUDING failure cases)", fontsize=16)
+    # ax.set_title("Histogram of Founder Share Value (EXCLUDING failure cases)", fontsize=16)
     ax.legend(fontsize=14, frameon=True)
     # ax.grid(color="lightgray", linewidth=0.5)
     st.pyplot(fig3)
