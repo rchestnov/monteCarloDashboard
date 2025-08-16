@@ -79,7 +79,7 @@ def create_distribution_plots(simulationData):
             bins=50,
             kde=False,
             color=color,
-            edgecolor='black',
+            edgecolor='white',
             linewidth=0.5,
             alpha=0.75,
             ax=ax,
@@ -94,7 +94,7 @@ def create_distribution_plots(simulationData):
 
 def create_founder_value_plot(simulationData):
     fig, ax = plt.subplots(figsize=(20, 7))
-    sns.histplot(simulationData['founderShareValue'], bins='auto', color="#007E76", 
+    sns.histplot(simulationData['founderShareValue'], bins='auto', color="#007E76", edgecolor = "white",
                 alpha=0.75, zorder=2, linewidth=0.5, stat='probability', ax=ax)
     ax.axvline(simulationData['founderShareValue'].mean(), color='red', 
               linestyle='--', label="mean")
@@ -218,7 +218,7 @@ if 'simulationData' in st.session_state:
     # Ограниченный диапазон (как в вашем коде)
     st.header("💰 Founder Share Value Distribution (Zoomed)")
     fig3, ax = plt.subplots(figsize=(20, 7))
-    sns.histplot(simulationData['founderShareValue'], bins='auto', color="#007E76", 
+    sns.histplot(simulationData['founderShareValue'], bins='auto', color="#007E76", edgecolor = "white",
                 alpha=0.75, zorder=2, binrange=[6.0, 11.5], linewidth=0.5, stat='probability', ax=ax)
     ax.axvline(simulationData['founderShareValue'].mean(), color='red', linestyle='--', label="mean")
     ax.axvline(simulationData['founderShareValue'].median(), color='limegreen', linestyle='--', label="median")
