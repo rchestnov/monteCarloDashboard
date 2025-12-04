@@ -120,22 +120,20 @@ share_dist = st.sidebar.selectbox("Distribution Type", ["Fixed", "Uniform", "Nor
 
 share_params = {'type': share_dist}
 if share_dist == "Fixed":
-    if "share_fixed" not in st.session_state:
-        st.session_state.share_fixed = 10.0
-
     col1, col2 = st.sidebar.columns([2, 1])
-    with col1:
-        st.slider(
-            "Fixed Value", 1.0, 50.0, step=0.01,
-            key="share_fixed" 
-        )
-    with col2:
-        st.number_input(
-            " ", 1.0, 50.0, step=0.01,
-            key="share_fixed"
-        )
 
-    share_params["value"] = st.session_state.share_fixed
+    with col1:
+        pshare_slider = st.slider("Fixed Value", 1.0, 50.0, 10.0, 0.01, key="pshare_slider")
+
+    with col2:
+        pshare_input = st.number_input(" ", min_value=1.0, max_value=50.0, value=float(pshare_slider), step=0.01, key="pshare_input")
+
+    # синхронизация
+    if pshare_input != pshare_slider:
+        share_params['value'] = pshare_input
+    else:
+        share_params['value'] = pshare_slider
+
 
 
 elif share_dist == "Uniform":
