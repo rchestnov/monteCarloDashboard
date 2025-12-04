@@ -120,36 +120,38 @@ share_dist = st.sidebar.selectbox("Distribution Type", ["Fixed", "Uniform", "Nor
 
 share_params = {'type': share_dist}
 if share_dist == "Fixed":
+
     if "share_fixed" not in st.session_state:
         st.session_state.share_fixed = 10.0
 
-        def _update_share_from_slider():
-            st.session_state.share_fixed = st.session_state.share_slider
+    def _update_share_from_slider():
+        st.session_state.share_fixed = st.session_state.share_slider
 
-        def _update_share_from_input():
-            st.session_state.share_fixed = st.session_state.share_input
+    def _update_share_from_input():
+        st.session_state.share_fixed = st.session_state.share_input
 
-        col1, col2 = st.sidebar.columns([2, 1])
+    col1, col2 = st.sidebar.columns([2, 1])
 
-        with col1:
-            st.slider(
-                "Fixed Value",
-                1.0, 50.0, step=0.01,
-                key="share_slider",
-                value=st.session_state.share_fixed,
-                on_change=_update_share_from_slider,
-            )
+    with col1:
+        st.slider(
+            "Fixed Value",
+            min_value=1.0, max_value=50.0, step=0.01,
+            key="share_slider",
+            value=st.session_state.share_fixed,
+            on_change=_update_share_from_slider,
+        )
 
-        with col2:
-            st.number_input(
-                " ",
-                min_value=1.0, max_value=50.0, step=0.01,
-                key="share_input",
-                value=st.session_state.share_fixed,
-                on_change=_update_share_from_input,
-            )
+    with col2:
+        st.number_input(
+            " ",
+            min_value=1.0, max_value=50.0, step=0.01,
+            key="share_input",
+            value=st.session_state.share_fixed,
+            on_change=_update_share_from_input,
+        )
 
-        share_params["value"] = st.session_state.share_fixed
+    share_params["value"] = st.session_state.share_fixed
+
 
 elif share_dist == "Uniform":
     share_params['min'] = st.sidebar.slider("Min Value", 1.0, 20.0, 8.0, 0.1)
