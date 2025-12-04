@@ -120,7 +120,7 @@ share_dist = st.sidebar.selectbox("Distribution Type", ["Fixed", "Uniform", "Nor
 
 share_params = {'type': share_dist}
 if share_dist == "Fixed":
-    share_params['value'] = st.sidebar.slider("Fixed Value", 1.0, 50.0, 10.0, 0.1)
+    share_params['value'] = st.sidebar.slider("Fixed Value", 1.0, 50.0, 10.0, 0.01)
 elif share_dist == "Uniform":
     share_params['min'] = st.sidebar.slider("Min Value", 1.0, 20.0, 8.0, 0.1)
     share_params['max'] = st.sidebar.slider("Max Value", 5.0, 50.0, 12.0, 0.1)
