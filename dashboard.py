@@ -119,40 +119,8 @@ st.sidebar.subheader("Share Price (pShare)")
 share_dist = st.sidebar.selectbox("Distribution Type", ["Fixed", "Uniform", "Normal", "Log-Normal"], key="share")
 
 share_params = {'type': share_dist}
-
 if share_dist == "Fixed":
-    if "share_fixed" not in st.session_state:
-        st.session_state.share_fixed = 10.0
-
-    def _update_share_from_slider():
-        st.session_state.share_fixed = st.session_state.share_slider
-        st.session_state.share_input = st.session_state.share_slider
-
-    def _update_share_from_input():
-        st.session_state.share_fixed = st.session_state.share_input
-        st.session_state.share_slider = st.session_state.share_input
-
-    col1, col2 = st.sidebar.columns([2, 1])
-    with col1:
-        st.slider(
-            "Fixed Value", 1.0, 50.0, step=0.01,
-            key="share_slider",
-            value=st.session_state.share_fixed,
-            on_change=_update_share_from_slider,
-        )
-    with col2:
-        st.number_input(
-            " ", 1.0, 50.0, step=0.01,
-            key="share_input",
-            value=st.session_state.share_fixed,
-            on_change=_update_share_from_input,
-        )
-
-    share_params["value"] = st.session_state.share_fixed
-
-
-
-
+    share_params['value'] = st.sidebar.slider("Fixed Value", 1.0, 50.0, 10.0, 0.01)
 elif share_dist == "Uniform":
     share_params['min'] = st.sidebar.slider("Min Value", 1.0, 20.0, 8.0, 0.1)
     share_params['max'] = st.sidebar.slider("Max Value", 5.0, 50.0, 12.0, 0.1)
